@@ -4,13 +4,16 @@ export function ButtonGroup({
   handleRemoveAllItems,
   handleResetToInitial,
   handleMarkAllAsComplete,
+  handleMarkAllAsIncomplete,
 }) {
   return (
     <section className="button-group">
       <Button onClick={handleMarkAllAsComplete} buttonType="secondary">
         Mark all as complete
       </Button>
-      <Button buttonType="secondary">Mark all as incomplete</Button>
+      <Button onClick={handleMarkAllAsIncomplete} buttonType="secondary">
+        Mark all as incomplete
+      </Button>
       <Button onClick={handleResetToInitial} buttonType="secondary">
         reset to initial
       </Button>

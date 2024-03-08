@@ -6,6 +6,7 @@ function Sidebar({
   handleRemoveAllItems,
   handleResetToInitial,
   handleMarkAllAsComplete,
+  handleMarkAllAsIncomplete,
 }) {
   return (
     <div className="sidebar">
@@ -15,6 +16,7 @@ function Sidebar({
         handleRemoveAllItems={handleRemoveAllItems}
         handleResetToInitial={handleResetToInitial}
         handleMarkAllAsComplete={handleMarkAllAsComplete}
+        handleMarkAllAsIncomplete={handleMarkAllAsIncomplete}
       />
     </div>
   );

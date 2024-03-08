@@ -1,8 +1,15 @@
-function ItemList({ items }) {
+function ItemList({ items, handleDeleteItem, handleToggleItem }) {
   return (
     <ul>
       {items.map((item) => {
-        return <Item key={item.name} item={item} />;
+        return (
+          <Item
+            key={item.name}
+            item={item}
+            handleDeleteItem={handleDeleteItem}
+            handleToggleItem={handleToggleItem}
+          />
+        );
       })}
     </ul>
   );
@@ -10,14 +17,22 @@ function ItemList({ items }) {
 
 export default ItemList;
 
-function Item({ item }) {
+function Item({ item, handleDeleteItem, handleToggleItem }) {
   return (
     <li className="item">
-      <label>
-        {" "}
-        <input type="checkbox" /> {item.name}
+      <label
+        onChange={() => {
+          handleToggleItem(item.id);
+        }}
+      >
+        <input type="checkbox" checked={item.packed} /> {item.name}
       </label>
-      <button className="item__remove">❌</button>
+      <button
+        className="item__remove"
+        onClick={() => handleDeleteItem(item.id)}
+      >
+        ❌
+      </button>
     </li>
   );
 }
