@@ -1,7 +1,9 @@
+import { useItemsContext } from "../lib/hooks";
 import Counter from "./Counter";
 import Logo from "./Logo";
 
-function Header({ numberOfItemsPacked, totalNumberOfItems }) {
+function Header() {
+  const { totalNumberOfItems, numberOfItemsPacked } = useItemsContext();
   return (
     <header>
       <Logo />
