@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BackgroundHeading from "./BackgroundHeading";
 import Footer from "./Footer";
 import Header from "./Header";
@@ -7,7 +7,8 @@ import Sidebar from "./Sidebar";
 import { initialItems } from "../lib/constants";
 
 function App() {
-  const [items, setItems] = useState(initialItems);
+  const itemsFromLocalStorage = JSON.parse(localStorage.getItem("items"));
+  const [items, setItems] = useState(itemsFromLocalStorage || initialItems);
 
   const handleAddItem = (newItemText) => {
     const newItem = {
@@ -58,12 +59,23 @@ function App() {
     setItems(newItems);
   };
 
+  const totalNumberOfItems = items.length;
+
+  const numberOfItemsPacked = items.filter((item) => item.packed).length;
+
+  useEffect(() => {
+    localStorage.setItem("items", JSON.stringify(items));
+  }, [items]);
+
   return (
     <>
       <BackgroundHeading />
 
       <main>
-        <Header />
+        <Header
+          totalNumberOfItems={totalNumberOfItems}
+          numberOfItemsPacked={numberOfItemsPacked}
+        />
         <ItemList
           items={items}
           handleDeleteItem={handleDeleteItem}
