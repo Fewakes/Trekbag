@@ -1,11 +1,12 @@
 import { useRef, useState } from "react";
 import Button from "./Button";
-import { useItemsContext } from "../lib/hooks";
+
+import { useItemsStore } from "../stores/itemStore";
 
 function AddItemForm() {
   const [itemText, setItemText] = useState("");
   const inputRef = useRef();
-  const { handleAddItem } = useItemsContext();
+  const addItem = useItemsStore((state) => state.addItem);
 
   return (
     <form
@@ -19,7 +20,7 @@ function AddItemForm() {
           return;
         }
 
-        handleAddItem(itemText);
+        addItem(itemText);
         setItemText("");
       }}
     >
